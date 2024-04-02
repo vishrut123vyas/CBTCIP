@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Examination System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    input[type="text"],
+    input[type="password"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    input[type="submit"],
+    input[type="button"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover,
+    input[type="button"]:hover {
+        background-color: #0056b3;
+    }
+    .question {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to Online Examination System!</h2>
+    <form id="loginForm" style="display:block;">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <input type="button" value="Login" onclick="login()">
+    </form>
+
+    <div id="examForm" style="display:none;">
+        <h3>Multiple Choice Questions</h3>
+        <div class="question">
+            <p>Question 1: What is the capital of France?</p>
+            <input type="radio" name="q1" value="Paris"> Paris<br>
+            <input type="radio" name="q1" value="London"> London<br>
+            <input type="radio" name="q1" value="Berlin"> Berlin<br>
+            <input type="radio" name="q1" value="Rome"> Rome<br>
+        </div>
+        <div class="question">
+            <p>Question 2: Who wrote "To Kill a Mockingbird"?</p>
+            <input type="radio" name="q2" value="Harper Lee"> Harper Lee<br>
+            <input type="radio" name="q2" value="J.K. Rowling"> J.K. Rowling<br>
+            <input type="radio" name="q2" value="Stephen King"> Stephen King<br>
+            <input type="radio" name="q2" value="Charles Dickens"> Charles Dickens<br>
+        </div>
+        <input type="button" value="Submit" onclick="submitExam()">
+    </div>
+
+    <div id="result" style="display:none;">
+        <h3>Exam Result</h3>
+        <p id="score"></p>
+    </div>
+</div>
+
+<script>
+    function login() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        // Dummy authentication (replace with actual authentication logic)
+        if (username === 'user' && password === 'password') {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('examForm').style.display = 'block';
+        } else {
+            alert('Invalid username or password. Please try again.');
+        }
+    }
+
+    function submitExam() {
+        var score = 0;
+        // Dummy scoring logic
+        var q1Answer = document.querySelector('input[name="q1"]:checked').value;
+        if (q1Answer === 'Paris') {
+            score++;
+        }
+        var q2Answer = document.querySelector('input[name="q2"]:checked').value;
+        if (q2Answer === 'Harper Lee') {
+            score++;
+        }
+        document.getElementById('examForm').style.display = 'none';
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('score').innerHTML = 'Your score: ' + score + '/2';
+    }
+</script>
+</body>
+</html>
